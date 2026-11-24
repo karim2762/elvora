@@ -1,0 +1,37 @@
+# ELVORA API on Render — PREPARED, NOT DEPLOYED (Part 2 / Stage 11B). Verify every value in the Render dashboard before first deploy.
+# Why a paid "starter" web service + disk: the database is a SQLite file and issued PDFs / payment proofs are files on disk.
+# Render free web services have an ephemeral filesystem and sleep after 15 min, which would lose all data and stop the background worker.
+services:
+  - type: web
+    name: elvora-api
+    runtime: node
+    plan: starter
+    region: singapore            # closest Render region to India; confirm availability
+    buildCommand: npm ci --omit=dev --workspace=server
+    startCommand: npm run start --workspace=server
+    healthCheckPath: /api/v1/health/ready
+    numInstances: 1              # SQLite + in-process worker: never scale beyond ONE instance
+    disk:
+      name: elevora-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - { key: NODE_VERSION, value: "22" }
+      - { key: NODE_ENV, value: production }
+      - { key: TRUST_PROXY, value: "1" }          # confirm hop count in Part 2 (see docs/DEPLOYMENT.md §4)
+      - { key: DATABASE_URL, value: "file:/var/data/elevora.db" }
+      - { key: DOCUMENTS_DIR, value: /var/data/documents }
+      - { key: PAYMENT_PROOF_DIR, value: /var/data/payment-proofs }
+      - { key: SESSION_SECRET, generateValue: true }
+      # Set these in the dashboard (sync: false = never stored in git):
+      - { key: CORS_ORIGIN, sync: false }
+      - { key: CLIENT_URL, sync: false }
+      - { key: ADMIN_API_KEY, sync: false }
+      - { key: SUPER_ADMIN_EMAILS, sync: false }
+      - { key: ORG_ADDRESS, sync: false }
+      - { key: ORG_EMAIL, sync: false }
+      - { key: SMTP_HOST, sync: false }
+      - { key: SMTP_PORT, sync: false }
+      - { key: SMTP_USER, sync: false }
+      - { key: SMTP_PASS, sync: false }
+      - { key: MAIL_FROM, sync: false }

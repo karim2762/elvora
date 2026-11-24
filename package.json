@@ -1,0 +1,28 @@
+{
+  "name": "elvora",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently -n client,server -c cyan,green \"npm run dev -w client\" \"npm run dev -w server\"",
+    "build": "npm run build -w client",
+    "start": "npm run start -w server",
+    "catalog:sync": "node scripts/sync-internship-catalog.mjs",
+    "tasks:seed": "node scripts/seed-task-library.mjs",
+    "admin:key": "node scripts/generate-admin-key.mjs",
+    "admin:create": "node scripts/create-admin.mjs",
+    "cert:permission": "node scripts/certificate-permission.mjs",
+    "db:check": "npm run db:check -w server",
+    "admin:payments": "node scripts/grant-payment-permission.mjs",
+    "payments:setup": "node scripts/setup-payments.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  },
+  "engines": {
+    "node": "^22.13.0 || >=23.4.0"
+  }
+}

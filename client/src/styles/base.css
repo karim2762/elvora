@@ -1,0 +1,48 @@
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; font-family: var(--font); font-size: var(--fs-base); line-height: 1.6;
+  color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 var(--s-3); }
+p { margin: 0 0 var(--s-4); }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+
+.container { width: min(100% - 2rem, var(--container)); margin-inline: auto; }
+.section { padding-block: var(--s-16); }
+.text-muted { color: var(--muted); }
+.text-gradient { background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.grid { display: grid; gap: var(--s-6); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.row { display: flex; flex-wrap: wrap; gap: var(--s-3); align-items: center; }
+
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.animate-rise { animation: rise 600ms var(--ease) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* ===== Interaction polish (Stage 03) =====
+   Fixes the light-blue rectangle on tap/click: mobile browsers paint a default
+   tap-highlight on links/buttons, and some engines keep a focus ring after a mouse click.
+   Keyboard focus is NOT removed: :focus-visible stays, see below. */
+html { -webkit-tap-highlight-color: transparent; }
+a, button, summary, select, label, [role="button"], .card--interactive, .btn, .chip--btn, .navbar__link, .accordion__trigger {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation; /* no 300ms delay, no double-tap zoom on controls */
+}
+button { font-family: inherit; }
+/* Controls and decorative icons shouldn't get accidentally selected; body text still does. */
+.btn, .chip--btn, .navbar__toggle, .accordion__trigger, .filter-toggle, svg, .card__icon, .float, .logo {
+  -webkit-user-select: none; user-select: none;
+}
+/* Clean, consistent keyboard focus ring */
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 6px; }
+.btn--primary:focus-visible { outline-color: var(--midnight); }
+.footer :focus-visible, .section--dark :focus-visible, .cta :focus-visible { outline-color: var(--teal); }
+/* Mouse/touch focus: no ring (keyboard users still get :focus-visible above) */
+:focus:not(:focus-visible) { outline: none; }
+::selection { background: rgba(37, 99, 235, 0.22); color: inherit; }
+input, select, textarea { font: inherit; color: inherit; }

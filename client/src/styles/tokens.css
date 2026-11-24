@@ -1,0 +1,42 @@
+@import '@fontsource-variable/plus-jakarta-sans';
+
+:root {
+  /* Brand */
+  --midnight: #101827;
+  --blue: #2563eb;
+  --teal: #14b8a6;
+  --snow: #f8fafc;
+  --text: #111827;
+  --muted: #64748b;
+
+  /* Semantic */
+  --bg: var(--snow);
+  --surface: #ffffff;
+  --border: #e2e8f0;
+  --gradient: linear-gradient(135deg, var(--blue), var(--teal));
+
+  /* Type */
+  --font: 'Plus Jakarta Sans Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+  --fs-hero: clamp(2.25rem, 1.5rem + 3.5vw, 4rem);
+
+  /* Space / shape */
+  --s-1: 0.25rem; --s-2: 0.5rem; --s-3: 0.75rem; --s-4: 1rem;
+  --s-6: 1.5rem; --s-8: 2rem; --s-12: 3rem; --s-16: 4rem;
+  --r-sm: 8px; --r-md: 12px; --r-lg: 20px; --r-full: 999px;
+
+  /* Elevation */
+  --shadow-sm: 0 1px 2px rgba(16, 24, 39, 0.06);
+  --shadow-md: 0 8px 24px -8px rgba(16, 24, 39, 0.12);
+  --shadow-lg: 0 20px 40px -16px rgba(37, 99, 235, 0.25);
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --t: 200ms var(--ease);
+
+  --nav-h: 68px;
+  --container: 1160px;
+}

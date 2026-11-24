@@ -1,0 +1,28 @@
+/* ===== Stage 06C — public document verification page. Mobile first: one column, large touch targets, no horizontal scroll. ===== */
+.vfy { padding-block: var(--s-8) var(--s-16); }
+.vfy, .vfy * { -webkit-tap-highlight-color: transparent; }
+.vfy__eyebrow { margin: 0 0 var(--s-3); font-size: var(--fs-sm); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+.vfy__card { padding: var(--s-6); overflow: hidden; }
+.vfy__state { display: grid; justify-items: center; gap: var(--s-2); text-align: center; padding-block: var(--s-2) var(--s-4); }
+.vfy__badge { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; }
+.vfy__badge--ok { background: rgba(20, 184, 166, 0.15); color: #0f766e; }
+.vfy__badge--bad { background: #fee2e2; color: #b91c1c; }
+.vfy__badge--warn { background: #fef3c7; color: #92400e; }
+.vfy__title { margin: var(--s-2) 0 0; font-size: var(--fs-xl); line-height: 1.2; overflow-wrap: anywhere; }
+.vfy__result--ok .vfy__title { color: #0f766e; }
+.vfy__result--bad .vfy__title { color: #b91c1c; }
+.vfy__result--bad { border-left: 4px solid #dc2626; padding-left: var(--s-4); margin-left: calc(var(--s-2) * -1); }
+.vfy__lead { margin: 0; max-width: 46ch; color: var(--text); }
+.vfy__loading { display: flex; align-items: center; justify-content: center; gap: var(--s-3); margin: var(--s-8) 0; color: var(--muted); }
+.vfy__facts { display: grid; gap: 0; margin: var(--s-4) 0 0; border-top: 1px solid var(--border); }
+.vfy__row { display: grid; grid-template-columns: 1fr; gap: 2px; padding: var(--s-3) 0; border-bottom: 1px solid var(--border); }
+.vfy__row dt { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 600; color: var(--muted); }
+.vfy__row dd { margin: 0; font-size: var(--fs-base); font-weight: 600; overflow-wrap: anywhere; }
+.vfy__note { display: flex; gap: var(--s-2); align-items: flex-start; margin: var(--s-4) 0 0; font-size: var(--fs-sm); color: var(--muted); }
+.vfy__note svg { flex: none; margin-top: 2px; }
+.vfy__foot { margin: var(--s-4) 0; font-size: var(--fs-sm); }
+@media (min-width: 640px) {
+  .vfy__card { padding: var(--s-8); }
+  .vfy__row { grid-template-columns: 200px minmax(0, 1fr); align-items: baseline; gap: var(--s-4); }
+}
+@media (max-width: 360px) { .vfy__card { padding: var(--s-4); } .vfy__title { font-size: var(--fs-lg); } }

@@ -1,0 +1,30 @@
+{
+  "name": "server",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "test": "node --test test/auth.test.js test/ratelimit.test.js test/applications.test.js test/applications.ratelimit.test.js test/catalog.test.js test/dashboard.test.js test/progress.test.js test/internships.test.js test/stage05c.test.js test/admin.console.test.js test/documents.foundation.test.js test/documents.issuance.test.js test/documents.verification.test.js test/automation.test.js test/admin.dashboard.test.js test/stage07b.test.js test/admin.stage07b.test.js test/stage07b2.test.js test/admin.stage07b2.test.js test/stage07c.part1.test.js test/stage07c.e2e.test.js test/stage08a.adminsecurity.test.js test/stage08a.email.test.js test/stage08a.uploads.test.js test/instantOffer.test.js test/stage09a.audit.test.js test/stage09a.tasks.test.js test/stage09a.evaluation.test.js test/stage09b.library.test.js test/stage09b.part2a.test.js test/stage09b.part2b.service.test.js test/stage09b.part2b.test.js test/stage09c.github.test.js test/stage09c.unconfigured.test.js test/stage09c.part2a.test.js test/stage09c.part2a.unconfigured.test.js test/stage09c.part2b.test.js test/stage09d.audit.test.js test/stage10a.priority.test.js test/stage10a.part2.test.js test/stage10b.part1.test.js test/stage10b.part2a.service.test.js test/stage10b.part2a.http.test.js test/stage10b.part2b.service.test.js test/stage10b.part2b.http.test.js test/stage10c.test.js test/stage10c.part1.workflow.test.js test/stage10c.part1.security.test.js test/stage10c.part1.finance.test.js test/stage10c.part1.ratelimit.test.js test/stage10c.part2.corrections.test.js test/stage10d.autoapprove.test.js test/stage10e.plans.test.js test/stage10g.schedule.test.js",
+    "db:check": "node scripts/db-check.mjs"
+  },
+  "dependencies": {
+    "@fontsource/mrs-saint-delafield": "^5.3.0",
+    "@fontsource/noto-sans": "^5.3.0",
+    "@fontsource/noto-serif": "^5.3.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-rate-limit": "^7.4.1",
+    "fontkit": "^3.0.0",
+    "helmet": "^8.0.0",
+    "nodemailer": "^10.6.1",
+    "pdfkit": "^0.21.0",
+    "qrcode": "^1.5.4",
+    "svg-to-pdfkit": "^0.1.8"
+  },
+  "engines": {
+    "node": "^22.13.0 || >=23.4.0"
+  }
+}

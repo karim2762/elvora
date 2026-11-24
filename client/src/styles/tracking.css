@@ -1,0 +1,117 @@
+/* Stage 05B — My Applications, My Internship and the progress timeline.
+   Uses the shared tokens. Motion is short and is switched off globally by prefers-reduced-motion (base.css). */
+.track, .track * { -webkit-tap-highlight-color: transparent; }
+.track a, .track button { touch-action: manipulation; }
+.track { display: grid; gap: var(--s-6); }
+.track__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--s-4); }
+.track__head h1 { font-size: var(--fs-xl); margin-bottom: var(--s-1); }
+.track__head p { margin: 0; max-width: 60ch; }
+.track__card { padding: var(--s-6); }
+.track__h { display: flex; align-items: center; gap: var(--s-2); font-size: var(--fs-lg); margin-bottom: var(--s-4); }
+.track__note { display: flex; align-items: flex-start; gap: 6px; margin: var(--s-4) 0 0; color: var(--muted); font-size: 0.8125rem; }
+.track__note svg { flex: none; margin-top: 3px; }
+.track .back-link { margin-bottom: 0; }
+
+.status--indigo { background: rgba(99, 102, 241, 0.14); color: #4338ca; }
+
+/* ---------- Filters ---------- */
+.afilter { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+.afilter__btn { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; }
+.afilter__n { display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding-inline: 6px; border-radius: var(--r-full); background: rgba(100, 116, 139, 0.14); color: #475569; font-size: 0.75rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.afilter__btn.is-on .afilter__n { background: rgba(248, 250, 252, 0.25); color: var(--snow); }
+.is-refreshing { opacity: 0.55; transition: opacity 150ms var(--ease); pointer-events: none; }
+
+/* ---------- Applications: table (desktop) / cards (phones) ---------- */
+.atable { padding: 0; overflow-x: auto; animation: cardIn 250ms var(--ease) both; }
+.atable table { width: 100%; border-collapse: collapse; min-width: 760px; }
+.atable th { padding: var(--s-3) var(--s-4); text-align: left; color: var(--muted); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; background: var(--snow); border-bottom: 1px solid var(--border); white-space: nowrap; }
+.atable td { padding: var(--s-4); border-bottom: 1px solid var(--border); font-size: var(--fs-sm); vertical-align: middle; }
+.atable tbody tr { transition: background 150ms var(--ease); }
+.atable tbody tr:hover { background: rgba(37, 99, 235, 0.04); }
+.atable tbody tr:last-child td { border-bottom: 0; }
+.atable__title { display: block; font-weight: 700; }
+.atable__cat { display: block; color: var(--muted); font-size: 0.8125rem; }
+.atable__act { text-align: right; white-space: nowrap; }
+.acards { display: none; list-style: none; margin: 0; padding: 0; gap: var(--s-3); }
+.acards__item { display: grid; gap: var(--s-3); padding: var(--s-4); animation: cardIn 250ms var(--ease) both; }
+.acards__top { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; }
+.acards__top > div { min-width: 0; flex: 1 1 160px; }
+.acards__cat { margin: 0; color: var(--muted); font-size: 0.8125rem; }
+.acards__title { margin: 2px 0 0; font-size: var(--fs-base); overflow-wrap: anywhere; }
+.acards__facts { display: grid; gap: var(--s-2); margin: 0; padding-block: var(--s-3); border-block: 1px solid var(--border); font-size: var(--fs-sm); }
+.acards__facts div { display: flex; justify-content: space-between; gap: var(--s-3); align-items: baseline; }
+.acards__facts dt { color: var(--muted); flex: none; }
+.acards__facts dd { margin: 0; font-weight: 600; text-align: right; min-width: 0; }
+.acards .btn { justify-self: stretch; text-align: center; justify-content: center; }
+@media (max-width: 767px) {
+  .atable { display: none; }
+  .acards { display: grid; }
+}
+.asks { padding: var(--s-2) var(--s-4); animation: pulse 1.3s ease-in-out infinite; }
+.asks__row { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); padding: var(--s-4) 0; border-bottom: 1px solid var(--border); }
+.asks__row:last-child { border-bottom: 0; }
+
+.pager { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-3); margin-top: var(--s-4); }
+.pager__info { margin: 0; color: var(--muted); font-size: var(--fs-sm); }
+.pager__btns { display: flex; align-items: center; gap: var(--s-3); }
+.pager__page { font-size: var(--fs-sm); font-weight: 600; font-variant-numeric: tabular-nums; }
+.pager .btn { display: inline-flex; align-items: center; gap: 4px; }
+.pager .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* ---------- My Internship ---------- */
+.intern__top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: var(--s-4) var(--s-6); margin-bottom: var(--s-4); }
+.intern__title { flex: 1 1 280px; min-width: 0; }
+.intern__title h2 { font-size: var(--fs-xl); margin: 0; overflow-wrap: anywhere; }
+.intern__facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: var(--s-4); margin: 0; padding-top: var(--s-4); border-top: 1px solid var(--border); }
+.intern__facts dt { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 2px; color: var(--muted); font-size: var(--fs-sm); }
+.intern__facts dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+.intern__cols { display: grid; gap: var(--s-6); grid-template-columns: 1fr; }
+@media (min-width: 900px) { .intern__cols { grid-template-columns: 1fr 1fr; } }
+.intern__list { margin: 0; padding-left: 1.2rem; display: grid; gap: var(--s-2); }
+.intern__text { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* ---------- Progress timeline ---------- */
+.ptl { list-style: none; margin: 0; padding: 0; }
+.ptl__item { position: relative; display: flex; gap: var(--s-4); padding-bottom: var(--s-6); animation: cardIn 300ms var(--ease) both; }
+.ptl__item:last-child { padding-bottom: 0; }
+/* connector line to the next milestone; it is "done" colour only when this milestone is completed */
+.ptl__item::before { content: ''; position: absolute; left: 13px; top: 28px; bottom: 0; width: 2px; background: var(--border); }
+.ptl__item:last-child::before { display: none; }
+.ptl__item.is-completed::before { background: var(--teal); }
+.ptl__marker { flex: none; z-index: 1; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; border: 2px solid #cbd5e1; background: var(--surface); color: #fff; }
+.is-completed .ptl__marker { border-color: var(--teal); background: var(--teal); }
+.is-current .ptl__marker { border-color: var(--blue); background: var(--surface); box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.16); animation: timelinePulse 1.8s ease-in-out infinite; }
+.is-current .ptl__marker::after { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--blue); }
+.is-stopped .ptl__marker { border-color: #dc2626; background: #dc2626; }
+@keyframes timelinePulse { 0%, 100% { box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.16); } 50% { box-shadow: 0 0 0 7px rgba(37, 99, 235, 0.06); } }
+.ptl__body { min-width: 0; padding-top: 3px; }
+.ptl__label { margin: 0; font-weight: 700; line-height: 1.3; }
+.is-pending .ptl__label { color: var(--muted); font-weight: 600; }
+.is-current .ptl__label { color: #1d4ed8; }
+.is-stopped .ptl__label { color: #b91c1c; }
+.ptl__date { margin: 2px 0 0; color: #475569; font-size: var(--fs-sm); }
+.ptl__date--none { color: var(--muted); font-size: 0.8125rem; }
+.ptl__note { margin: 2px 0 0; color: #475569; font-size: var(--fs-sm); }
+.ptl--sk .ptl__item { animation: pulse 1.3s ease-in-out infinite; }
+.ptl--sk .ptl__marker { background: #e2e8f0; border-color: #e2e8f0; }
+
+@media (max-width: 600px) {
+  .track__card { padding: var(--s-4); }
+  .pager { justify-content: center; }
+}
+
+/* Stage 08A — responsive overflow fix.
+   Root cause: .track and .adm-page are single-column grids whose implicit track is `auto`, so a grid item's automatic minimum size
+   (min-content) stretched the whole column to the table's 760px minimum and pushed page headers/filters past the viewport.
+   minmax(0, 1fr) + min-width: 0 lets the column shrink; the table scrolls inside its own .atable wrapper (overflow-x: auto). */
+.track { grid-template-columns: minmax(0, 1fr); }
+.track > *, .adm-page > * { min-width: 0; }
+.track__head > *, .adm-page__head > * { min-width: 0; }
+.atable { max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; }
+.afilter { min-width: 0; }
+
+/* Stage 08A — mobile card list: same implicit-auto-track cause as .track. Long unbroken values (e-mail addresses, IDs) must wrap, not widen the page. */
+.acards { grid-template-columns: minmax(0, 1fr); }
+.acards__item { min-width: 0; }
+.acards__facts dd { overflow-wrap: anywhere; }
+.acards__facts div { min-width: 0; }
